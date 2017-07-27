@@ -20,9 +20,19 @@ app.use((req, res, next) => {
 
 // app.use('/svgs', express.static('./content/svgs'));
 
+const data_type_map = {
+  'race': 'races',
+  'class': 'classes',
+  'discipline': 'disciplines',
+  'power': 'powers'
+};
+
 app.use('/svgs/:data_type/:id', (req, res, next) => {
   const ext = path.extname(req.params.id);
   if(ext) req.params.id = req.params.id.slice(0, req.params.id.length - ext.length);
+
+  req.params.data_type = data_type_map[req.params.data_type] || req.params.data_type;
+
   res.sendFile(path.join(__dirname, '..', 'content', 'svgs', req.params.data_type, req.params.id + '.svg'), null, (err) => {
     if(err) {
       logger.error('svgs', err);
@@ -34,6 +44,9 @@ app.use('/svgs/:data_type/:id', (req, res, next) => {
 app.use('/svgs/:data_type', (req, res, next) => {
   const ext = path.extname(req.params.data_type);
   if(ext) req.params.data_type = req.params.data_type.slice(0, req.params.data_type.length - ext.length);
+
+  req.params.data_type = data_type_map[req.params.data_type] || req.params.data_type;
+
   res.sendFile(path.join(__dirname, '..', 'default_content', 'svgs', req.params.data_type + '.svg'));
 });
 
@@ -42,6 +55,9 @@ app.use('/svgs/:data_type', (req, res, next) => {
 app.use('/images/:data_type/:id', (req, res, next) => {
   const ext = path.extname(req.params.id);
   if(ext) req.params.id = req.params.id.slice(0, req.params.id.length - ext.length);
+
+  req.params.data_type = data_type_map[req.params.data_type] || req.params.data_type;
+
   res.sendFile(path.join(__dirname, '..', 'content', 'images', req.params.data_type, req.params.id + '.png'), null, (err) => {
     if(err) {
       logger.error('images', err);
@@ -53,6 +69,9 @@ app.use('/images/:data_type/:id', (req, res, next) => {
 app.use('/images/:data_type', (req, res, next) => {
   const ext = path.extname(req.params.data_type);
   if(ext) req.params.data_type = req.params.data_type.slice(0, req.params.data_type.length - ext.length);
+
+  req.params.data_type = data_type_map[req.params.data_type] || req.params.data_type;
+
   res.sendFile(path.join(__dirname, '..', 'default_content', 'images', req.params.data_type + '.png'));
 });
 
