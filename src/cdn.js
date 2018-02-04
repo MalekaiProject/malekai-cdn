@@ -36,7 +36,10 @@ app.use('/svgs/:data_type/:id', (req, res, next) => {
   res.sendFile(path.join(__dirname, '..', 'content', 'svgs', req.params.data_type, req.params.id + '.svg'), null, (err) => {
     if(err) {
       logger.error('svgs', err);
-      res.sendFile(path.join(__dirname, '..', 'default_content', 'svgs', req.params.data_type + '.svg'));
+      if(Object.keys(req.query).find(a => a === "noDefault"))
+        res.sendStatus(404)
+      else
+        res.sendFile(path.join(__dirname, '..', 'default_content', 'svgs', req.params.data_type + '.svg'));
     }
   });
 });
@@ -61,7 +64,10 @@ app.use('/images/:data_type/:id', (req, res, next) => {
   res.sendFile(path.join(__dirname, '..', 'content', 'images', req.params.data_type, req.params.id + '.png'), null, (err) => {
     if(err) {
       logger.error('images', err);
-      res.sendFile(path.join(__dirname, '..', 'default_content', 'images', req.params.data_type + '.png'));
+      if(Object.keys(req.query).find(a => a === "noDefault"))
+        res.sendStatus(404)
+      else
+        res.sendFile(path.join(__dirname, '..', 'default_content', 'images', req.params.data_type + '.png'));
     }
   });
 });
