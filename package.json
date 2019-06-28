@@ -1,14 +1,14 @@
 {
   "name": "malekai-cdn",
   "version": "0.1.0",
-  "description": "The cdn for the malekai project",
-  "main": "cdn.js",
+  "description": "The CDN for Project Malekai",
+  "main": "malekaiCDN.js",
   "private": true,
   "scripts": {
-    "start": "node src/cdn.js",
+    "start": "node src/malekaiCDN.js",
     "fetch": "node src/fetch.js"
   },
-  "author": "The Malekai Network",
+  "author": "Project Malekai",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
