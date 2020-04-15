@@ -1,21 +1,20 @@
 {
   "name": "malekai-cdn",
-  "version": "0.1.0",
-  "description": "The cdn for the malekai project",
-  "main": "cdn.js",
+  "version": "1.0.0",
+  "description": "Malekai.org CDN",
+  "main": "malekaiCDN",
   "private": true,
   "scripts": {
-    "start": "node src/cdn.js",
-    "fetch": "node src/fetch.js"
+    "start": "malekaiCDN.js",
+    "update": "fetchUpdates.js"
   },
-  "author": "The Malekai Network",
+  "author": "Scree",
   "license": "MIT",
   "dependencies": {
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^3.18.0",
-    "moment": "^2.24.0",
     "simple-git": "^1.116.0"
   },
   "devDependencies": {
